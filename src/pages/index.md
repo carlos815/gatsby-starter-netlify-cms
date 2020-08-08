@@ -1,7 +1,7 @@
 ---
 templateKey: index-page
 title: Great coffee with a conscience
-image: /img/home-jumbotron.jpg
+image: /img/background.jpg
 heading: Great coffee with a conscience
 subheading: Support sustainable farming while enjoying a cup
 mainpitch:
@@ -67,4 +67,17 @@ main:
   image3:
     alt: Coffee beans
     image: /img/products-grid1.jpg
+aboutUs:
+  title: About Us
+  par1: >
+    Semper sed neque quis tortor. Diam augue et lectus eget amet. Urna, non fermentum in in. Nulla sed vestibulum volutpat vitae, suspendisse porttitor. Augue consequat, eu dictum felis. Ipsum gravida fermentum vel lectus cursus. Purus arcu,  fermentum in
+  par2: >
+    suspendisse porttitor. Augue consequat, eu dictum felis. Ipsum gravida fermentum vel lectus cursus. Purus arcu,  fermentum in gravida fermentum vel lectus cursus. Purus arcu,  fermentum in
+  counts:
+      - unit: Hotels
+        number: 1.2k
+      - unit: Rooms
+        number: 4.8k
+      - unit: Countries
+        number: 1.2k
 ---
