@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import hotelFeatured from "../img/hotelFeatured.jpg";
+import hotelFeatured from "../img/square.png";
 
 const FindHotel = ({ data }) => {
   //const { frontmatter } = data.markdownRemark;
@@ -17,7 +17,7 @@ const FindHotel = ({ data }) => {
         <button className="btn w-auto inline-block">View All</button>
       </div>
 
-      <div className="cardGroup flex space-x-8">
+      <div className="cardGroup grid-12">
         <Card />
         <Card />
         <Card />
@@ -35,14 +35,14 @@ const Card = ({ data }) => {
       className="
     group
     grid
-    grid-rows-2 
+    col-span-3
     bg-background-primary-color 
     rounded-xl 
     overflow-hidden  
     hover:bg-background-secondary-color 
     cursor-pointer"
     >
-      <div classname="squared-image">
+      <div classname="wide-image">
         <img src={hotelFeatured} alt="" />
       </div>
       <div className="p-8 border-outline border-2 rounded-b-xl group-hover:border-background-secondary-color">

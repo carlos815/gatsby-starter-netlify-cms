@@ -28,19 +28,19 @@ module.exports = {
     borderColor: ["group-hover"],
   },
   plugins: [
-    plugin(function ({ addUtilities, config}) {
-      const rotateUtilities = _.map(config("theme.colors"), (value, key) => {
-        return {
-          [`.fade-out-${key}::after`]: {
-            content: "",
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            background: `linear-gradient(${value}94, ${value})`,
-          },
-        };
-      });
-      addUtilities(rotateUtilities);
-    }),
+    // plugin(function ({ addUtilities, config}) {
+    //   const rotateUtilities = _.map(config("theme.colors"), (value, key) => {
+    //     return {
+    //       [`.fade-out-${key}::after`]: {
+    //         content: "",
+    //         width: "100%",
+    //         height: "100%",
+    //         position: "absolute",
+    //         background: `linear-gradient(${value}94, ${value})`,
+    //       },
+    //     };
+    //   });
+    //   addUtilities(rotateUtilities);
+    // }),
   ],
 };

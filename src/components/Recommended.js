@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import hotelFeatured from "../img/hotelFeatured.jpg";
+import QuoteLarge from "./QuoteLarge"
 
 const Recommended = ({ data }) => {
   //const { frontmatter } = data.markdownRemark;
 
   return (
-    <div className="about-us grid grid-cols-2">
-      <div className="info pr-10 pt-3 bg-background-third-color">
+    <div className="relative about-us grid-12 grid-rows-6">
+      <div className="info col-span-4 row-span-6">
         <h2 className="pb-5">Shangai Hotel</h2>
         <p className="pb-5 text-background-secondary-color text-xs">
           Shangai China
@@ -26,8 +27,13 @@ const Recommended = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="images squared-image">
-        <img src={hotelFeatured} alt="" srcset="" />
+      <div className="wide-image max-w-screen-xl w-screen h-full row-span-5 col-span-8 col-start-5 row-start-1 border rounded-3xl overflow-hidden border-transparent">
+        <img className='cover' src={hotelFeatured} alt="" srcset="" />
+      </div>
+      <div className='col-span-5 col-start-8 row-start-5 row-end-7 z-10 self-end relative'>
+       
+          <QuoteLarge/>
+  
       </div>
     </div>
   );

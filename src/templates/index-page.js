@@ -11,9 +11,13 @@ import AboutUs from "../components/AboutUs";
 import Recommended from "../components/Recommended";
 import FindHotel from "../components/FindHotel";
 import Testimonials from "../components/Testimonials";
+import Container from "../components/Container";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import FooterCard from "../components/FooterCard";
 
-
-
+import background from "../../static/img/background.jpg";
+import heart from "../img/heart-2.svg";
 
 export const IndexPageTemplate = ({
   image,
@@ -26,26 +30,92 @@ export const IndexPageTemplate = ({
   aboutUs,
 }) => (
   <div>
-    <section>
-      <SearchBox />
-      <Quote />
-      <Quote />
+    <section className="grid grid-rows-7">
+      {/*This part has three sections nested in one to make them overlayed with CSS grid*/}
+
+      <div className="row-span-7 row-start-1 col-start-1 z-10 opacity-0">
+        <Container>
+          <Navbar />
+        </Container>
+      </div>
+
+      {/* Search screen */}
+      <div className="row-span-4 row-start-2 col-start-1 z-10">
+        <Container>
+          <div className="grid-12 h-auto">
+            <div className="col-span-5">
+              <SearchBox />
+            </div>
+            <div className="floating-parent col-span-6 col-start-7">
+              <div className="floating-globes">
+                <div>
+                  <img src={heart} alt="" srcset="" />
+                </div>
+                <Quote />
+                <Quote className="flex font-black" />
+
+                <div>
+                  <img src={heart} alt="" srcset="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/*Featured*/}
+      <div className="relative row-span-2 row-start-6 col-start-1">
+        <Container>
+          <Featured />
+          <div className="absolute top-0 w-full h-full">
+            <div className="absolute h-full w-full border border-transparent rounded-l-3xl gap-4 items-center bg-background-third-color"></div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Background */}
+      <div className="row-span-6 row-start-1 col-start-1 w-full h-full">
+        <img className="object-cover h-full w-full" src={background} alt="" />
+      </div>
     </section>
-    <section>
-      <Featured />
+
+    {/*About Hotely*/}
+    <section className="bg-background-primary-color py-16">
+      <Container>
+        <AboutUs data={aboutUs} />
+      </Container>
     </section>
-    <section className="bg-background-primary-color">
-      <AboutUs data={aboutUs}/>
+
+    {/* Recommended Hotel*/}
+    <section className=" bg-background-third-color py-32">
+      <Container>
+        <Recommended />
+      </Container>
     </section>
-    <section>
-      <Recommended/>
-      <QuoteLarge/>
-    </section>
+
+    {/*Find your best Hotel*/}
     <section className="bg-background-primary-color py-64">
-      <FindHotel/>
+      <Container>
+        <FindHotel />
+      </Container>
+      <img className="background " src={background} alt="" />
     </section>
-    <section className='bg-background-secondary-color py-32'>
-      <Testimonials/>
+
+    {/*Testimonials*/}
+    <section className="bg-background-secondary-color pt-32">
+      <div className="grid grid-rows-8">
+        <div className="row-span-6 col-start-1 row-start-1">
+          <Container>
+            <Testimonials />
+          </Container>
+        </div>
+        <div className="row-span-2 col-start-1 row-start-6 z-10">
+          <Container>
+            <FooterCard />
+          </Container>
+        </div>
+        <div className="col-start-1  row-start-7 row-span-2 bg-background-third-color"></div>
+      </div>
     </section>
   </div>
 );
@@ -122,15 +192,15 @@ export const pageQuery = graphql`
           }
           heading
           description
-        } aboutUs 
-            {
-              title
-              par1
-              par2
-              counts {
-                unit
-                number
-              }
+        }
+        aboutUs {
+          title
+          par1
+          par2
+          counts {
+            unit
+            number
+          }
         }
       }
     }

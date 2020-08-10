@@ -3,13 +3,16 @@ import { Helmet } from 'react-helmet'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import './all.sass'
+import './test.css'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
+import Container from '../components/Container'
+
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
   return (
-    <div className='layout container mx-auto max-w-6xl py-12 bg-blue-900'>
+    <div className='layout'>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -49,9 +52,13 @@ const TemplateWrapper = ({ children }) => {
         />
       </Helmet>
 
-      <Navbar />
+  <Container><div className='absolute z-10 w-full'><Container>
+  <Navbar />
+  </Container></div></Container>
       <div className=''>{children}</div>
+      <div className='bg-background-third-color'><Container>
       <Footer />
+      </Container></div>
 
     </div>
   )

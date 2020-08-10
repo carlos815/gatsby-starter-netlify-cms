@@ -4,11 +4,11 @@ import hotelFeatured from "../img/hotelFeatured.jpg";
 import stars from "../img/stars.svg";
 
 const Testimonials = ({ testimonials }) => (
-  <div className="grid testimonials row-gap-16">
-    <div className="squared-image rounded-2xl overflow-hidden mr-32">
+  <div className="grid-12 grid-rows-2 testimonials row-gap-16 pt-6">
+    <div className="squared-image col-span-5  rounded-2xl overflow-hidden">
       <img className="" src={hotelFeatured} alt="" />
     </div>
-    <div className="flex flex-col items-start space-y-5 justify-between p-12 bg-background-primary-color bg-opacity-25 text-background-primary-color">
+    <div className="flex flex-col  col-span-6 col-start-7 items-start space-y-5 justify-between p-12 bg-background-primary-color bg-opacity-25 text-background-primary-color">
       <p>
         Aliquet tincidunt urna congue lectus sodales volutpat, in venenatis. In
         pellentesque est iaculis tortor proin eleifend ipsum nunc, sed. At
@@ -19,10 +19,10 @@ const Testimonials = ({ testimonials }) => (
       </p>
       <img src={stars} alt="" />
     </div>
-    <div className="squared-image fade-out-background-primary-color rounded-2xl overflow-hidden mr-32">
+    <div className="squared-image col-span-5  col-start-1 fade-out rounded-t-2xl overflow-hidden">
       <img src={hotelFeatured} alt="" />
     </div>
-    <div className="flex justify-between">
+    <div className="flex col-span-6 col-start-7 justify-between">
       <div className="text-background-primary-color">
         <p className="text2xl font-bold">Robert Rene</p>
         <p>Singapore</p>

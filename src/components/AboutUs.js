@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import aereal from "../img/aereal.jpg";
+import aboutUs from "../img/aboutUs.svg";
 
 
 const AboutUs = ({ data }) => {
   //const { frontmatter } = data.markdownRemark;
   console.log(data.counts)
   return (
-    <div className='about-us grid grid-cols-2'>
-        <div className='images squared-image'>
-            <img src={aereal} alt="" srcset=""/>
+    <div className='about-us grid-12'>
+        <div className='images col-span-6'>
+            <img src={aboutUs} alt="" srcset=""/>
         </div>
-        <div className='info pl-16'>
+        <div className='info col-start-8 col-span-5 self-center'>
             <h2 className='pb-12'>{data.title}</h2>
 
             <p className='pb-12 text-base font-normal text-font-secondary-color'>
