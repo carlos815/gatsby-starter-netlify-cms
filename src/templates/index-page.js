@@ -1,40 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
+import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
 import Layout from "../components/Layout";
+
 import SearchBox from "../components/SearchBox";
 import Quote from "../components/Quote";
-import QuoteLarge from "../components/QuoteLarge";
 import Featured from "../components/Featured";
 import AboutUs from "../components/AboutUs";
 import Recommended from "../components/Recommended";
 import FindHotel from "../components/FindHotel";
 import Testimonials from "../components/Testimonials";
 import Container from "../components/Container";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import FooterCard from "../components/FooterCard";
-import Image from 'gatsby-image'
 
 import heart from "../img/heart-2.svg";
 import dots from "../img/dots.svg";
 
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
-
 export const IndexPageTemplate = ({
   image,
-  background,
-  title,
-  heading,
-  subheading,
-  mainpitch,
-  description,
-  intro,
-  aboutUs,
+  aboutus,
+  featured,
+  findhotel,
+  recommended,
+  testimonials,
 }) => (
   <div>
-    <section className="grid grid-rows-7">
+    <section className="mainscreen grid">
       {/*This part has three sections nested in one to make them overlayed with CSS grid*/}
 
       <div className="row-span-7 row-start-1 col-start-1 py-20 opacity-0">
@@ -51,13 +44,13 @@ export const IndexPageTemplate = ({
             <div className="floating-parent col-span-6 col-start-7">
               <div className="floating-globes">
                 <div>
-                  <img src={heart} alt="" srcset="" />
+                  <img src={heart} alt="" srcSet="" />
                 </div>
                 <Quote />
                 <Quote className="flex font-black" />
 
                 <div>
-                  <img src={heart} alt="" srcset="" />
+                  <img src={heart} alt="" srcSet="" />
                 </div>
               </div>
             </div>
@@ -66,9 +59,9 @@ export const IndexPageTemplate = ({
       </div>
 
       {/*Featured*/}
-      <div className="relative row-span-2 row-start-6 col-start-1 z-10">
+      <div className="relative self-center row-span-2 row-start-6 col-start-1 z-10">
         <Container>
-          <Featured/>
+          <Featured data={featured} />
           <div className="absolute top-0 w-full h-full">
             <div className="absolute h-full w-full border border-transparent rounded-l-3xl gap-4 items-center bg-background-third-color"></div>
           </div>
@@ -76,8 +69,8 @@ export const IndexPageTemplate = ({
       </div>
 
       {/* Background */}
-      <div className="row-span-6 row-start-1 col-start-1 w-full h-full z-0">
-        <PreviewCompatibleImage imageInfo={background} />
+      <div className="overflow-hidden row-span-6 row-start-1 col-start-1 w-full h-full z-0">
+        <PreviewCompatibleImage imageInfo={image} />
         {/*<img className="object-cover h-full w-full" src={background} alt="" />*/}
       </div>
     </section>
@@ -85,24 +78,23 @@ export const IndexPageTemplate = ({
     {/*About Hotely*/}
     <section className="bg-background-primary-color py-16">
       <Container>
-        <AboutUs data={aboutUs} />
+        <AboutUs data={aboutus} />
       </Container>
     </section>
 
     {/* Recommended Hotel*/}
     <section className=" bg-background-third-color py-32">
       <Container>
-        <Recommended />
+        <Recommended data={recommended} />
       </Container>
     </section>
 
     {/*Find your best Hotel*/}
     <section className="relative bg-background-primary-color py-64">
-
       <Container>
-      <img className="absolute" style={{top: "-4%"}} src={dots} alt="" />
+        <img className="absolute" style={{ top: "-4%" }} src={dots} alt="" />
 
-        <FindHotel />
+        <FindHotel data={findhotel} />
       </Container>
     </section>
 
@@ -111,7 +103,7 @@ export const IndexPageTemplate = ({
       <div className="grid grid-rows-8">
         <div className="row-span-6 col-start-1 row-start-1">
           <Container>
-            <Testimonials />
+            <Testimonials data={testimonials} />
           </Container>
         </div>
         <div className="row-span-2 col-start-1 row-start-6 z-10">
@@ -127,33 +119,42 @@ export const IndexPageTemplate = ({
 
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  background: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
-  heading: PropTypes.string,
-  subheading: PropTypes.string,
-  mainpitch: PropTypes.object,
-  description: PropTypes.string,
-  intro: PropTypes.shape({
-    blurbs: PropTypes.array,
+  featured: PropTypes.shape({
+    title: PropTypes.string,
+    text: PropTypes.string,
   }),
+  aboutus: PropTypes.shape({
+    title: PropTypes.string,
+    par1: PropTypes.string,
+    par2: PropTypes.string,
+    counts: PropTypes.array,
+  }),
+  recommended: PropTypes.shape({
+    name: PropTypes.string,
+    country: PropTypes.string,
+    description: PropTypes.string,
+    image1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  }),
+  findhotel: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    items: PropTypes.array,
+  }),
+  testimonials: PropTypes.array,
 };
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
 
-
   return (
     <Layout>
       <IndexPageTemplate
         image={frontmatter.image}
-        background={frontmatter.background}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
-        mainpitch={frontmatter.mainpitch}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
-        aboutUs={frontmatter.aboutUs}
+        featured={frontmatter.featured}
+        aboutus={frontmatter.aboutus}
+        findhotel={frontmatter.findhotel}
+        recommended={frontmatter.recommended}
+        testimonials={frontmatter.testimonials}
       />
     </Layout>
   );
@@ -173,7 +174,6 @@ export const pageQuery = graphql`
   query IndexPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
-        title
         image {
           childImageSharp {
             fluid(maxWidth: 2048, quality: 100) {
@@ -181,36 +181,7 @@ export const pageQuery = graphql`
             }
           }
         }
-        background {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        heading
-        subheading
-        mainpitch {
-          title
-          description
-        }
-        description
-        intro {
-          blurbs {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 240, quality: 64) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            text
-          }
-          heading
-          description
-        }
- 
-        aboutUs {
+        aboutus {
           title
           par1
           par2
@@ -218,6 +189,62 @@ export const pageQuery = graphql`
             unit
             number
           }
+        }
+        findhotel {
+          description
+          items {
+            country
+            image1 {
+              alt
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 256, quality: 92) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            name
+          }
+          title
+        }
+        testimonials {
+          author
+          country
+          image1 {
+            alt
+            image {
+              childImageSharp {
+                fluid(maxWidth: 512, quality: 92) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          quote
+        }
+        recommended {
+          country
+          description
+          name
+          review {
+            author
+            quote
+          }
+          image1 {
+            alt
+            image {
+              childImageSharp {
+                fluid(maxWidth: 526, quality: 92) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+        featured {
+          text
+          title
         }
       }
     }

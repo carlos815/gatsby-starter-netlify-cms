@@ -1,27 +1,24 @@
 import React from "react";
-import PropTypes from "prop-types";
-import hotelFeatured from "../img/square.png";
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 
 const FindHotel = ({ data }) => {
-  //const { frontmatter } = data.markdownRemark;
 
   return (
     <div className="find-hotel flex flex-col items-center">
       <div className='flex flex-col text-center items-center max-w-xl pb-32'>
-        <h2>Find your best hotel</h2>
+        <h2>{data.title}</h2>
         <p className='text-font-secondary-color py-10'>
-          Ullamcorper cras imperdiet eu feugiat viverra pulvinar. Gravida
-          integer tincidunt pretium dis fames porttitor velit. Volutpat
-          tincidunt
+          {data.description}
         </p>
         <button className="btn w-auto inline-block">View All</button>
       </div>
 
       <div className="cardGroup grid-12">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+
+        {data.items.map((item) => {
+          return <Card data={item} key={item.name}/>
+        })}
+
       </div>
     </div>
   );
@@ -33,8 +30,9 @@ const Card = ({ data }) => {
   return (
     <div
       className="
+      card
     group
-    grid
+    grid grid-rows-2
     col-span-3
     bg-background-primary-color 
     rounded-xl 
@@ -42,15 +40,16 @@ const Card = ({ data }) => {
     hover:bg-background-secondary-color 
     cursor-pointer"
     >
-      <div classname="wide-image">
-        <img src={hotelFeatured} alt="" />
+      <div className="imagecontainer overflow-hidden">
+      <PreviewCompatibleImage imageInfo={data.image1} />
+      {/*<img src={hotelFeatured} alt="" />*/}
       </div>
-      <div className="p-8 border-outline border-2 rounded-b-xl group-hover:border-background-secondary-color">
+      <div className="p-8  border-2 rounded-b-xl group-hover:border-background-secondary-color">
         <p className="font-bold text-xl group-hover:text-background-primary-color">
-          Hotel De’Luna
+          {data.name}
         </p>
         <p className="text-font-secondary-color group-hover:text-background-primary-color">
-          Singapore
+        {data.country}
         </p>
       </div>
     </div>

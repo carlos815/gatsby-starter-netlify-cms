@@ -41,7 +41,7 @@ const Navbar = class extends React.Component {
           <div className="navbar-start">
             <Link
               to="/"
-              className="text-background-primary-color text-2xl"
+              className="text-background-primary-color font-bold text-2xl"
               title="Logo"
             >
               Hotely

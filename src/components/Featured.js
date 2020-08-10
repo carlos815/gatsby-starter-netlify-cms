@@ -1,13 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import heart from "../img/heart.svg";
-import Container from "./Container";
+
 const Featured = ({ data }) => {
-  //const { frontmatter } = data.markdownRemark;
 
   return (
-    <div className="featured grid grid-cols-7 border border-transparent rounded-l-3xl gap-4 items-center p-16 z-20">
-      <img className="col-span-1 z-20" src={`${heart}`} alt="" srcset="" />
+    <div className="featured h-full grid grid-cols-7 border border-transparent rounded-l-3xl gap-4 items-center p-16 z-20">
+      <img className="col-span-1 z-20" src={`${heart}`} alt="" srcSet="" />
       <p className="text-background-secondary-color col-span-3 text-4xl font-bold z-20">
         It takes less than 1 minute to book a room
       </p>
