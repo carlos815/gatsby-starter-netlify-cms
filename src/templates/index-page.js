@@ -92,7 +92,7 @@ export const IndexPageTemplate = ({
     {/*Find your best Hotel*/}
     <section className="relative bg-background-primary-color py-64">
       <Container>
-        <img className="absolute" style={{ top: "-4%" }} src={dots} alt="" />
+        <img className="absolute" style={{ top: "-10%" }} src={dots} alt="" />
 
         <FindHotel data={findhotel} />
       </Container>
