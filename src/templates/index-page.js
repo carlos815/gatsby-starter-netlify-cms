@@ -15,12 +15,16 @@ import Container from "../components/Container";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FooterCard from "../components/FooterCard";
+import Image from 'gatsby-image'
 
-import background from "../../static/img/background.jpg";
 import heart from "../img/heart-2.svg";
+import dots from "../img/dots.svg";
+
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 
 export const IndexPageTemplate = ({
   image,
+  background,
   title,
   heading,
   subheading,
@@ -33,10 +37,8 @@ export const IndexPageTemplate = ({
     <section className="grid grid-rows-7">
       {/*This part has three sections nested in one to make them overlayed with CSS grid*/}
 
-      <div className="row-span-7 row-start-1 col-start-1 z-10 opacity-0">
-        <Container>
-          <Navbar />
-        </Container>
+      <div className="row-span-7 row-start-1 col-start-1 py-20 opacity-0">
+        {/*This is the space for the navbar, which is positioned as absolute to allow it to overlay with the background image. Every page should leave this space at the beggining*/}
       </div>
 
       {/* Search screen */}
@@ -64,9 +66,9 @@ export const IndexPageTemplate = ({
       </div>
 
       {/*Featured*/}
-      <div className="relative row-span-2 row-start-6 col-start-1">
+      <div className="relative row-span-2 row-start-6 col-start-1 z-10">
         <Container>
-          <Featured />
+          <Featured/>
           <div className="absolute top-0 w-full h-full">
             <div className="absolute h-full w-full border border-transparent rounded-l-3xl gap-4 items-center bg-background-third-color"></div>
           </div>
@@ -74,8 +76,9 @@ export const IndexPageTemplate = ({
       </div>
 
       {/* Background */}
-      <div className="row-span-6 row-start-1 col-start-1 w-full h-full">
-        <img className="object-cover h-full w-full" src={background} alt="" />
+      <div className="row-span-6 row-start-1 col-start-1 w-full h-full z-0">
+        <PreviewCompatibleImage imageInfo={background} />
+        {/*<img className="object-cover h-full w-full" src={background} alt="" />*/}
       </div>
     </section>
 
@@ -94,11 +97,13 @@ export const IndexPageTemplate = ({
     </section>
 
     {/*Find your best Hotel*/}
-    <section className="bg-background-primary-color py-64">
+    <section className="relative bg-background-primary-color py-64">
+
       <Container>
+      <img className="absolute" style={{top: "-4%"}} src={dots} alt="" />
+
         <FindHotel />
       </Container>
-      <img className="background " src={background} alt="" />
     </section>
 
     {/*Testimonials*/}
@@ -122,6 +127,7 @@ export const IndexPageTemplate = ({
 
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  background: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
   heading: PropTypes.string,
   subheading: PropTypes.string,
@@ -134,10 +140,13 @@ IndexPageTemplate.propTypes = {
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
+
+
   return (
     <Layout>
       <IndexPageTemplate
         image={frontmatter.image}
+        background={frontmatter.background}
         title={frontmatter.title}
         heading={frontmatter.heading}
         subheading={frontmatter.subheading}
@@ -172,6 +181,13 @@ export const pageQuery = graphql`
             }
           }
         }
+        background {
+          childImageSharp {
+            fluid(maxWidth: 2048, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
         heading
         subheading
         mainpitch {
@@ -193,6 +209,7 @@ export const pageQuery = graphql`
           heading
           description
         }
+ 
         aboutUs {
           title
           par1

@@ -52,9 +52,9 @@ const TemplateWrapper = ({ children }) => {
         />
       </Helmet>
 
-  <Container><div className='absolute z-10 w-full'><Container>
+  <Container><div className='absolute z-10 w-full max-w-6xl'>
   <Navbar />
-  </Container></div></Container>
+ </div> </Container>
       <div className=''>{children}</div>
       <div className='bg-background-third-color'><Container>
       <Footer />

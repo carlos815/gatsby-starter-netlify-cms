@@ -2,6 +2,7 @@
 templateKey: index-page
 title: Great coffee with a conscience
 image: /img/background.jpg
+background: /img/background.jpg
 heading: Great coffee with a conscience
 subheading: Support sustainable farming while enjoying a cup
 mainpitch:
@@ -67,6 +68,10 @@ main:
   image3:
     alt: Coffee beans
     image: /img/products-grid1.jpg
+featured:
+  title: It takes less than 1 minute to book a room
+  text: >
+    Suspendisse tristique porttitor vel iaculis iaculis nec imperdiet. Senectus risus nisi, eget vel sit faucibus praesent netus. Ut velit pellent porttitor vel iaculis iaculis
 aboutUs:
   title: About Us
   par1: >

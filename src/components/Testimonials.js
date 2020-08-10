@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import hotelFeatured from "../img/hotelFeatured.jpg";
 import stars from "../img/stars.svg";
+import arrowLeft from "../img/arrow-left.svg"
+import arrowRight from "../img/arrow-right.svg"
+
 
 const Testimonials = ({ testimonials }) => (
   <div className="grid-12 grid-rows-2 testimonials row-gap-16 pt-6">
@@ -27,9 +30,9 @@ const Testimonials = ({ testimonials }) => (
         <p className="text2xl font-bold">Robert Rene</p>
         <p>Singapore</p>
       </div>
-      <div className="flex items-start">
-        <div className="rounded-full bg-background-primary-color">{'<-'}</div>
-        <div className="rounded-full bg-background-primary-color">{'->'}</div>
+      <div className="flex items-start gap-3">
+        <div className="cursor-pointer"><img src={arrowLeft} alt="" srcset=""/></div>
+        <div className="cursor-pointer"><img src={arrowRight} alt="" srcset=""/></div>
       </div>
     </div>
   </div>
