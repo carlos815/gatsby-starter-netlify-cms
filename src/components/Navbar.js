@@ -37,7 +37,7 @@ const Navbar = class extends React.Component {
         role="navigation"
         aria-label="main-navigation"
       >
-        <div className='flex items-center justify-between py-6 z-20'>
+        <div className='flex items-center justify-between py-6 '>
           <div className="navbar-start">
             <Link
               to="/"

@@ -35,7 +35,7 @@ export const IndexPageTemplate = ({
       </div>
 
       {/* Search screen */}
-      <div className="row-span-4 row-start-2 col-start-1 z-10">
+      <div className="row-span-4 row-start-2 col-start-1 z-20">
         <Container>
           <div className="grid-12 h-auto">
             <div className="col-span-5">
@@ -59,7 +59,7 @@ export const IndexPageTemplate = ({
       </div>
 
       {/*Featured*/}
-      <div className="relative self-center row-span-2 row-start-6 col-start-1 z-10">
+      <div className="relative self-center row-span-2 row-start-6 col-start-1 z-20">
         <Container>
           <Featured data={featured} />
           <div className="absolute top-0 w-full h-full">
@@ -69,6 +69,24 @@ export const IndexPageTemplate = ({
       </div>
 
       {/* Background */}
+      <div className="lines-over-background row-span-6 row-start-1 col-start-1 w-full h-full z-10">
+        <Container>
+          <div className='grid grid-cols-5 w-full h-full opacity-25'>
+            <div className='border-l border-r border-background-primary-color'>
+               
+            </div>
+            <div className='border-r border-background-primary-color'>
+            </div>
+            <div className='border-r border-background-primary-color'>
+            </div>
+            <div className='border-r border-background-primary-color'>
+            </div>
+            <div className='border-r border-background-primary-color'>
+            </div>
+          </div>
+        </Container>
+      </div>
+
       <div className="overflow-hidden row-span-6 row-start-1 col-start-1 w-full h-full z-0">
         <PreviewCompatibleImage imageInfo={image} />
         {/*<img className="object-cover h-full w-full" src={background} alt="" />*/}
@@ -145,7 +163,7 @@ IndexPageTemplate.propTypes = {
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
-  console.log(frontmatter.testimonials)
+  console.log(frontmatter.testimonials);
   return (
     <Layout>
       <IndexPageTemplate
