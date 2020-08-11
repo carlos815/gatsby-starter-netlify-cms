@@ -3,47 +3,49 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
-\:root
-  --gutter: 3rem
-  --wrapper: 100vw
-  --noOfColumns: 4
-  --noOfGutters: calc(var(--noOfColumns) - 1)
-  --ratioA: 1
-  --ratioB: 1
-  --factor: calc(var(--ratioB) / var(--ratioA))
-  --rh: calc(( (var(--wrapper) - (var(--noOfGutters) * var(--gutter))) / var(--noOfColumns)) * var(--factor))
+
+@mixin fixToRightBorder($wrapper)
+  width: calc(100% + (100vw - #{$wrapper}) / 2)
+
+@mixin cardRowsTemplate($wrapper)
+  $gutter: 3rem
+  $noOfColumns: 4
+  $noOfGutters: $noOfColumns - 1
+  $ratioA: 1
+  $ratioB: 1
+  $factor: $ratioB / $ratioA
+  $rh: calc((#{$wrapper} - #{$noOfGutters} * #{$gutter}) / #{$noOfColumns} * #{$factor})
+  grid-template-rows: #{$rh} 1fr
 
 @media (min-width: 640px)
-  \:root
-    --wrapper: 640px
-    --gutter: 20px
-    --noOfColumns: 4
-    --ratioA: 1
-    --ratioB: 1
+  .recommended
+    .image
+      @include fixToRightBorder(640px)
+  
+  .card
+    @include cardRowsTemplate(640px)
 
 @media (min-width: 768px)
-  \:root
-    --wrapper: 768px
-    --gutter: 20px
-    --noOfColumns: 4
-    --ratioA: 1
-    --ratioB: 1
+  .recommended
+    .image
+      @include fixToRightBorder(768px)
+  .card
+    @include cardRowsTemplate(768px)
 
 @media (min-width: 1024px)
-  \:root
-    --wrapper: 1024px
-    --gutter: 20px
-    --noOfColumns: 4
-    --ratioA: 1
-    --ratioB: 1
+  .recommended
+    .image
+      @include fixToRightBorder(1024px)
+  .card
+    @include cardRowsTemplate(1024px)
 
 @media (min-width: 1280px)
-  \:root
-    --wrapper: 1126px
-    --gutter: 20px
-    --noOfColumns: 4
-    --ratioA: 1
-    --ratioB: 1
+  .recommended
+    .image
+      @include fixToRightBorder(1152px)
+  .card
+    @include cardRowsTemplate(1152px)
+
 
 body 
   font-family: 'Ubuntu', sans-serif
@@ -71,15 +73,12 @@ p
 .recommended
   grid-template-rows: repeat(6, calc(100vh / 6))
 
-  .image
-    width: calc(100% + (100vw - var(--wrapper)) / 2)
-
 .mainscreen
   height: 100%
-  grid-template-rows: repeat(7, calc(100% / 7))
+  grid-template-rows: repeat(7, 100% / 7)
 
 .card
-  grid-template-rows: var(--rh) 1fr
+  display: grid
   overflow: hidden
 
   div
@@ -108,7 +107,11 @@ p
 
 .search-box
   .checkgroup input
-    &:checked ~ label:before
+    opacity: 0.5
+    height: 24px
+    width: 24px
+
+    &:checked ~ label:after
       content: ""
       position: absolute
       top: 0
@@ -118,9 +121,7 @@ p
       background-image: url("../img/check.svg")
       background-size: cover
 
-      opacity: 0.5
-      height: 24px
-      width: 24px
+
 
   select
     -webkit-appearance: none
