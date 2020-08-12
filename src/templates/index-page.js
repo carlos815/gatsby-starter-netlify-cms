@@ -37,7 +37,7 @@ export const IndexPageTemplate = ({
       {/* Search screen */}
       <div className="row-span-4 row-start-2 col-start-1 z-20">
         <Container>
-          <div className="grid-12 h-auto">
+          <div className="search-box-wrapper grid-12 h-auto">
             <div className="col-span-5">
               <SearchBox />
             </div>
@@ -71,18 +71,12 @@ export const IndexPageTemplate = ({
       {/* Background */}
       <div className="lines-over-background row-span-6 row-start-1 col-start-1 w-full h-full z-10">
         <Container>
-          <div className='grid grid-cols-5 w-full h-full opacity-25'>
-            <div className='border-l border-r border-background-primary-color'>
-               
-            </div>
-            <div className='border-r border-background-primary-color'>
-            </div>
-            <div className='border-r border-background-primary-color'>
-            </div>
-            <div className='border-r border-background-primary-color'>
-            </div>
-            <div className='border-r border-background-primary-color'>
-            </div>
+          <div className="grid grid-cols-5 w-full h-full opacity-25">
+            <div className="border-l border-r border-background-primary-color"></div>
+            <div className="border-r border-background-primary-color"></div>
+            <div className="border-r border-background-primary-color"></div>
+            <div className="border-r border-background-primary-color"></div>
+            <div className="border-r border-background-primary-color"></div>
           </div>
         </Container>
       </div>
