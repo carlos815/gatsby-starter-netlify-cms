@@ -6,7 +6,7 @@ main:
     - text: This hotely is like paradise!
     - text: Extraordinary, very confortable!
 featured:
-  title: It takes less than 1 minute to book a room
+  title: It takes less than 1 minute to book a Room
   text: >
     Suspendisse tristique porttitor vel iaculis iaculis nec imperdiet. Senectus
     risus nisi, eget vel sit faucibus praesent netus. Ut velit pellent porttitor
