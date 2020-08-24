@@ -19,22 +19,26 @@ import heart from "../img/heart-2.svg";
 import dots from "../img/dots.svg";
 
 export const IndexPageTemplate = ({
+  title,
+  main,
   image,
   aboutus,
   featured,
   findhotel,
   recommended,
   testimonials,
+  contactUs,
 }) => (
   <div>
     <section className="mainscreen grid">
       {/*This part has three sections nested in one to make them overlayed with CSS grid*/}
 
       <div className="row-span-7 row-start-1 col-start-1 py-20 opacity-0">
-        {/*This is the space for the navbar, which is positioned as absolute to allow it to overlay with the background image. Every page should leave this space at the beggining*/}
+        {/*This is the space for the navbar, which is positioned as absolute to allow it to overlay with the background image.
+        Every page should leave this space so it doesn't go over the navbar.*/}
       </div>
 
-      {/* Search screen */}
+      {/* Search/main screen */}
       <div className="row-span-4 row-start-2 col-start-1 z-20">
         <Container>
           <div className="search-box-wrapper grid-12 h-auto">
@@ -46,8 +50,8 @@ export const IndexPageTemplate = ({
                 <div>
                   <img src={heart} alt="" srcSet="" />
                 </div>
-                <Quote />
-                <Quote className="flex font-black" />
+                <Quote data={main.bubbles[0]}/>
+                <Quote data={main.bubbles[1]} className="flex font-black" />
 
                 <div>
                   <img src={heart} alt="" srcSet="" />
@@ -62,15 +66,18 @@ export const IndexPageTemplate = ({
       <div className="relative self-center row-span-2 row-start-6 col-start-1 z-20">
         <Container>
           <Featured data={featured} />
+          {/*These empty divs are the background of this "Featured" section.
+          It's separate from the content so it can go all the way to the right while the content stays in the center*/}
           <div className="absolute top-0 w-full h-full">
             <div className="absolute h-full w-full border border-transparent rounded-l-3xl gap-4 items-center bg-background-third-color"></div>
           </div>
         </Container>
       </div>
 
-      {/* Background */}
+      {/* Background Image*/}
       <div className="lines-over-background row-span-6 row-start-1 col-start-1 w-full h-full z-10">
         <Container>
+          {/*The lines over the background image*/}
           <div className="grid grid-cols-5 w-full h-full opacity-25">
             <div className="border-l border-r border-background-primary-color"></div>
             <div className="border-r border-background-primary-color"></div>
@@ -83,7 +90,6 @@ export const IndexPageTemplate = ({
 
       <div className="overflow-hidden row-span-6 row-start-1 col-start-1 w-full h-full z-0">
         <PreviewCompatibleImage imageInfo={image} />
-        {/*<img className="object-cover h-full w-full" src={background} alt="" />*/}
       </div>
     </section>
 
@@ -110,7 +116,7 @@ export const IndexPageTemplate = ({
       </Container>
     </section>
 
-    {/*Testimonials*/}
+    {/*Testimonials and footer card*/}
     <section className="bg-background-secondary-color pt-32">
       <div className="grid grid-rows-8">
         <div className="row-span-6 col-start-1 row-start-1">
@@ -120,7 +126,7 @@ export const IndexPageTemplate = ({
         </div>
         <div className="row-span-2 col-start-1 row-start-6 z-10">
           <Container>
-            <FooterCard />
+            <FooterCard title={title} data={contactUs}/>
           </Container>
         </div>
         <div className="col-start-1  row-start-7 row-span-2 bg-background-third-color"></div>
@@ -130,6 +136,10 @@ export const IndexPageTemplate = ({
 );
 
 IndexPageTemplate.propTypes = {
+  title: PropTypes.string,
+  main: PropTypes.shape({
+    bubbles: PropTypes.array,
+  }),
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   featured: PropTypes.shape({
     title: PropTypes.string,
@@ -153,20 +163,26 @@ IndexPageTemplate.propTypes = {
     items: PropTypes.array,
   }),
   testimonials: PropTypes.array,
+  contactUs: PropTypes.shape({
+    about: PropTypes.string,
+    contactInfo: PropTypes.array,
+  }),
 };
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
-  console.log(frontmatter.testimonials);
   return (
     <Layout>
       <IndexPageTemplate
+        title={frontmatter.title}
+        main={frontmatter.main}
         image={frontmatter.image}
         featured={frontmatter.featured}
         aboutus={frontmatter.aboutus}
         findhotel={frontmatter.findhotel}
         recommended={frontmatter.recommended}
         testimonials={frontmatter.testimonials}
+        contactUs={frontmatter.contactUs}
       />
     </Layout>
   );
@@ -257,6 +273,18 @@ export const pageQuery = graphql`
         featured {
           text
           title
+        }
+        contactUs {
+          about
+          contactInfo {
+            text
+          }
+        }
+        title
+        main {
+          bubbles {
+            text
+          }
         }
       }
     }

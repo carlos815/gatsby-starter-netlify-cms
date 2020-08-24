@@ -45,6 +45,22 @@ collections:
               widget: "hidden",
               default: "index-page",
             }
+          - { label: Title, name: title, widget: string }
+          - {
+              label: Main Page,
+              name: main,
+              widget: object,
+              fields:
+                [
+                  {
+                    label: Bubbles,
+                    name: bubbles,
+                    widget: list,
+                    fields:
+                      [{ label: Dialog Text, name: text, widget: string }],
+                  },
+                ],
+            }
           - {
               label: featured,
               name: featured,
@@ -157,6 +173,21 @@ collections:
                       ],
                   },
                   { label: Quote, name: quote, widget: string },
+                ],
+            }
+          - {
+              label: Contact Information,
+              name: contactUs,
+              widget: object,
+              fields:
+                [
+                  { label: About, name: about, widget: string },
+                  {
+                    label: Contact Info,
+                    name: contactInfo,
+                    widget: list,
+                    fields: [{ label: Text, name: text, widget: string }],
+                  },
                 ],
             }
       - file: "src/pages/about/index.md"
