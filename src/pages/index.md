@@ -3,10 +3,10 @@ templateKey: index-page
 title: Hotely
 main:
   bubbles:
-    - text: This hotely is like paradise!
+    - text: This hotel is like paradise!
     - text: Extraordinary, very confortable!
 featured:
-  title: It takes less than 1 minute to book a Room
+  title: It takes less than 1 minute to book a room
   text: >
     Suspendisse tristique porttitor vel iaculis iaculis nec imperdiet. Senectus
     risus nisi, eget vel sit faucibus praesent netus. Ut velit pellent porttitor
